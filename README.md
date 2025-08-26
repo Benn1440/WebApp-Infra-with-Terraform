@@ -47,6 +47,14 @@ This saves the plan in a binary format, and can be directly used with `terraform
 To make the file human-readable, you can use `terraform show tfplan > tfplan.txt` <br>
 <img width="1848" height="1032" alt="image" src="https://github.com/user-attachments/assets/1cc7aabb-1b2c-4658-a05b-dfc153fa1241" />
 
+## Initialize Terraform for the prod environment and Terraform plan in an output file
+`terraform plan -out=tfplan` and 
+`terraform plan -no-color > output.txt`
+
+<img width="1865" height="1052" alt="image" src="https://github.com/user-attachments/assets/b6108c18-b05e-4193-ba33-9fe31d11f33f" />
+
+
+
 
 
 
