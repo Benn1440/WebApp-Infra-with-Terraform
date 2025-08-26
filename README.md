@@ -24,6 +24,7 @@ This is a comprehensive guide to implementing a multi-environment web applicatio
     D --> E(VMs in private subnets across zones)
     E --> F(Cloud SQL for MySQL (Private IP in the same VPC))
 
-    
-  
+  ## connect project to GCP   
+<img width="1615" height="208" alt="image" src="https://github.com/user-attachments/assets/28d951ca-c151-4520-9355-30560010c316" />
+
 
