@@ -2,7 +2,7 @@ This is a comprehensive guide to implementing a multi-environment web applicatio
 
 # GCP Services
 
-| VPC | Subnets	VPC  Subnets are the foundational network. |
+| VPC | Subnets: VPC  Subnets are the foundational network. |
 | :------ | :----------: |
 | Internet Gateway | Cloud Router & Cloud NAT |  Manages egress and ingress for subnets. |
 | NAT Gateway | Cloud NAT	allows private instances to access the internet. |
@@ -24,7 +24,8 @@ This is a comprehensive guide to implementing a multi-environment web applicatio
     D --> E(VMs in private subnets across zones)
     E --> F(Cloud SQL for MySQL (Private IP in the same VPC))
 
-  ## Connect project to GCP   
+  ## Connect project to GCP  
+To connect your project with your Google Cloud, run `gcloud auth login`. This should provide your project info then you can set your project with `gcloud config set project PROJECT_ID`. Alternatively, you can authenticate with `gcloud auth application-default login` or `gcloud auth application-default login  --no-browser`<br><br><br>
 <img width="1615" height="208" alt="image" src="https://github.com/user-attachments/assets/28d951ca-c151-4520-9355-30560010c316" />
 
 ## Initialize Terraform for dev environment
@@ -37,6 +38,16 @@ This is a comprehensive guide to implementing a multi-environment web applicatio
 
 
 <img width="1644" height="818" alt="image" src="https://github.com/user-attachments/assets/c32958a1-e2bc-4822-9333-27d28b9ba541" /><br>
+
+## output Terraform plan in an output file
+
+`terraform plan -out=tfplan` 
+This saves the plan in a binary format, and can be directly used with `terraform apply` to ensure the exact planned changes are applied <br>
+
+To make the file human-readable, you can use `terraform show tfplan > tfplan.txt` <br>
+<img width="1848" height="1032" alt="image" src="https://github.com/user-attachments/assets/1cc7aabb-1b2c-4658-a05b-dfc153fa1241" />
+
+
 
 
 
