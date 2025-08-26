@@ -8,5 +8,10 @@ terraform {
 }
 
 provider "google" {
-  # Configuration options
+
+   # Configuration options. Credentials are picked up from ADC (gcloud auth application-default login)
+  # You can also explicitly set them here, but it's less secure.
+  # credentials = file("path-to-your-service-account-key.json")
+  project = var.project_id # This variable will be defined in each environment
+  region  = var.region     # This variable will be defined in each environment
 }
