@@ -1,0 +1,14 @@
+# Ignore the .terraform directory
+.terraform/
+
+# Ignore local Terraform state file
+terraform.tfstate
+
+# Ignore the state backup file
+terraform.tfstate.backup
+
+# Ignore the lock file that stores provider checksums
+.terraform.lock.hcl
+
+# Ignore any variable definition files
+*.tfvars
