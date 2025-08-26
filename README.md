@@ -1,9 +1,6 @@
 This is a comprehensive guide to implementing a multi-environment web application infrastructure with Auto-Scaling on Google Cloud Platform (GCP).
 
-# GCP Architecture & Service Mapping
-Would be using GCP's managed services:
-
-# GCP Equivalent	Description
+# GCP Services
 
 | VPC | Subnets	VPC  Subnets are the foundational network. |
 | :------ | :----------: |
@@ -19,21 +16,14 @@ Would be using GCP's managed services:
 | SNS	Cloud Pub/Sub | For sending alert notifications. |
 
 
-## Architecture Overview on GCP:
+## Solution Architecture Overview on GCP:
 
-text
-      Internet
-         |
-         ↓
- Google HTTP(S) Load Balancer (Global)
-         |
-         ↓
-   Backend Service (指向MIG)
-         |
-         ↓
- Managed Instance Group (MIG) [Auto-Scaling]
- (VMs in private subnets across zones)
-         |
-         ↓
-    Cloud SQL for MySQL
- (Private IP in the same VPC)
+    A[Internet] --> B(Google HTTP(S) Load Balancer (Global))
+    B --> C(Backend Service (Managed Instance Group))
+    C --> D(Managed Instance Group (MIG) [Auto-Scaling])
+    D --> E(VMs in private subnets across zones)
+    E --> F(Cloud SQL for MySQL (Private IP in the same VPC))
+
+    
+  
+
