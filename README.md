@@ -24,7 +24,19 @@ This is a comprehensive guide to implementing a multi-environment web applicatio
     D --> E(VMs in private subnets across zones)
     E --> F(Cloud SQL for MySQL (Private IP in the same VPC))
 
-  ## connect project to GCP   
+  ## Connect project to GCP   
 <img width="1615" height="208" alt="image" src="https://github.com/user-attachments/assets/28d951ca-c151-4520-9355-30560010c316" />
+
+## Initialize Terraform for dev environment
+<img width="1386" height="273" alt="image" src="https://github.com/user-attachments/assets/d125a1eb-14dd-4d31-97e3-92c1a45db801" />
+
+## Terraform plan
+<img width="1514" height="842" alt="image" src="https://github.com/user-attachments/assets/359bdb4e-b980-440a-bbb2-4d15ab02e93a" /> <br>
+
+<img width="813" height="728" alt="image" src="https://github.com/user-attachments/assets/a825c83c-98a8-47c1-a4d6-ccfcb2f06334" /> <br>
+
+
+<img width="1644" height="818" alt="image" src="https://github.com/user-attachments/assets/c32958a1-e2bc-4822-9333-27d28b9ba541" /><br>
+
 
 
