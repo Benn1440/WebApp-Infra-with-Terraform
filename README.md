@@ -71,6 +71,10 @@ Follow through the official Google Docs to create monitoring and alerting `https
 
 <img width="2896" height="1074" alt="image" src="https://github.com/user-attachments/assets/2e41bb58-1ca8-45d8-b485-e77c985229f9" /><br>
 
+## create Logs Alert <br><br>
+<img width="1907" height="525" alt="image" src="https://github.com/user-attachments/assets/f2f5d084-8815-40c5-9be9-668e601c960d" />
+
+
 Accessing instances<br>
 <img width="1492" height="502" alt="image" src="https://github.com/user-attachments/assets/c65397fb-fbfc-4b94-b575-48636babf064" /><br>
 <img width="1502" height="974" alt="image" src="https://github.com/user-attachments/assets/7085a85f-cb48-4b45-a4c1-c9963e86da02" /><br>
@@ -92,6 +96,7 @@ Accessing instances<br>
 
 ## Terraform Destroy<br>
 <img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
 
 
 
