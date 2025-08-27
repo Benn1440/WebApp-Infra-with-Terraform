@@ -90,6 +90,9 @@ Accessing instances
 <img width="1340" height="452" alt="image" src="https://github.com/user-attachments/assets/d28105f4-c9c9-412d-9c7b-4c33dbef0b52" /> <br>
 <img width="1082" height="338" alt="image" src="https://github.com/user-attachments/assets/7d84da16-0842-4aa4-8905-1b732a476f4b" /> <br>
 
+## Terraform Destroy
+<img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
 
 
 
