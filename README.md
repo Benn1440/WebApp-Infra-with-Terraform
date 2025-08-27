@@ -72,7 +72,16 @@ Follow through the official Google Docs to create monitoring and alerting `https
 <img width="2896" height="1074" alt="image" src="https://github.com/user-attachments/assets/2e41bb58-1ca8-45d8-b485-e77c985229f9" /><br>
 
 ## create Logs Alert <br><br>
-<img width="1907" height="525" alt="image" src="https://github.com/user-attachments/assets/f2f5d084-8815-40c5-9be9-668e601c960d" />
+From Logs Explorer in the GCP console
+<img width="1907" height="525" alt="image" src="https://github.com/user-attachments/assets/f2f5d084-8815-40c5-9be9-668e601c960d" /><br><br>
+
+<img width="466" height="954" alt="image" src="https://github.com/user-attachments/assets/c0a4d74a-514b-4a93-b66b-d5552f20cf27" /><br><br>
+<img width="1020" height="957" alt="image" src="https://github.com/user-attachments/assets/8f2ac62a-9a0a-4a01-8865-68eef0926453" /><br><br>
+
+<img width="762" height="362" alt="image" src="https://github.com/user-attachments/assets/13e2189e-e5b9-4241-877f-6f28d53c7033" />
+
+
+
 
 
 Accessing instances<br>
@@ -96,6 +105,7 @@ Accessing instances<br>
 
 ## Terraform Destroy<br>
 <img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
 
 
 
