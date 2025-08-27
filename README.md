@@ -78,10 +78,12 @@ From Logs Explorer in the GCP console
 <img width="466" height="954" alt="image" src="https://github.com/user-attachments/assets/c0a4d74a-514b-4a93-b66b-d5552f20cf27" /><br><br>
 <img width="1020" height="957" alt="image" src="https://github.com/user-attachments/assets/8f2ac62a-9a0a-4a01-8865-68eef0926453" /><br><br>
 
-<img width="762" height="362" alt="image" src="https://github.com/user-attachments/assets/13e2189e-e5b9-4241-877f-6f28d53c7033" />
+<img width="762" height="362" alt="image" src="https://github.com/user-attachments/assets/13e2189e-e5b9-4241-877f-6f28d53c7033" /><br><br>
 
-
-
+## Log-based metric alert
+<img width="1914" height="703" alt="image" src="https://github.com/user-attachments/assets/2e0b7477-5f17-4817-bddb-f0124f602d91" /> <br><br>
+<img width="1095" height="921" alt="image" src="https://github.com/user-attachments/assets/085642d2-70d3-49a3-8fe2-b4784a4ce21e" /><br><br>
+<img width="1853" height="506" alt="image" src="https://github.com/user-attachments/assets/0bc40bfa-a85f-4f44-8f66-1674a66e9fd6" /> <br><br>
 
 
 Accessing instances<br>
@@ -105,6 +107,7 @@ Accessing instances<br>
 
 ## Terraform Destroy<br>
 <img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
 
 
 
