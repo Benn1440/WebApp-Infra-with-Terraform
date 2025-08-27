@@ -66,7 +66,7 @@ You might encounter this error message, follow the URL and enable API & Services
 
 
 ## Monitoring on instances
-
+Follow through the official Google Docs to create monitoring and alerting `https://cloud.google.com/logging/docs/logs-based-metrics/charts-and-alerts#alert-on-lbm` <br><br>
 <img width="2926" height="1082" alt="image" src="https://github.com/user-attachments/assets/d682b633-f330-4a33-96c8-c14151c1c4b5" /> <br>
 
 <img width="2896" height="1074" alt="image" src="https://github.com/user-attachments/assets/2e41bb58-1ca8-45d8-b485-e77c985229f9" /><br>
@@ -92,6 +92,9 @@ Accessing instances<br>
 
 ## Terraform Destroy<br>
 <img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
+
+
 
 
 
