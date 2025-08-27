@@ -71,27 +71,28 @@ You might encounter this error message, follow the URL and enable API & Services
 
 <img width="2896" height="1074" alt="image" src="https://github.com/user-attachments/assets/2e41bb58-1ca8-45d8-b485-e77c985229f9" /><br>
 
-Accessing instances
+Accessing instances<br>
 <img width="1492" height="502" alt="image" src="https://github.com/user-attachments/assets/c65397fb-fbfc-4b94-b575-48636babf064" /><br>
 <img width="1502" height="974" alt="image" src="https://github.com/user-attachments/assets/7085a85f-cb48-4b45-a4c1-c9963e86da02" /><br>
 
 
-* Created Database 
+## Created Database <br>
 <img width="1686" height="584" alt="image" src="https://github.com/user-attachments/assets/0af1e6dc-0d05-498f-a965-4a1c29be069a" /> <br>
 <img width="2658" height="822" alt="image" src="https://github.com/user-attachments/assets/fbc80c32-138f-40ac-9afd-5c55e6243f8c" /><br>
 
-* 
+## Managed Instance Group <br>
 <img width="1860" height="1238" alt="image" src="https://github.com/user-attachments/assets/073f38de-020d-45cf-b08d-bc6f28e12665" /> <br>
-* Load Balancing
+## Load Balancing framework<br>
 <img width="2752" height="506" alt="image" src="https://github.com/user-attachments/assets/29461cb5-bfc9-4c79-badc-cf2c0cd86325" /><br>
-* Switching between instances using the load balancer IP
+## Switching between instances using the load balancer IP<br>
 <img width="2234" height="1520" alt="image" src="https://github.com/user-attachments/assets/febd7fc5-e5f0-4dce-8534-1846d26b4e0e" /><br>
 
 <img width="1340" height="452" alt="image" src="https://github.com/user-attachments/assets/d28105f4-c9c9-412d-9c7b-4c33dbef0b52" /> <br>
 <img width="1082" height="338" alt="image" src="https://github.com/user-attachments/assets/7d84da16-0842-4aa4-8905-1b732a476f4b" /> <br>
 
-## Terraform Destroy
+## Terraform Destroy<br>
 <img width="1804" height="543" alt="image" src="https://github.com/user-attachments/assets/6de7e995-5b2e-4a56-8584-d5b326c3e3e9" />
+
 
 
 
