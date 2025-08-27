@@ -1,0 +1,629 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.compute.google_compute_autoscaler.web_autoscaler will be created
+  + resource "google_compute_autoscaler" "web_autoscaler" {
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-web-autoscaler"
+      + project            = "ambient-tuner-469208-e2"
+      + self_link          = (known after apply)
+      + target             = (known after apply)
+      + zone               = "us-central1-a"
+
+      + autoscaling_policy {
+          + cooldown_period = 60
+          + max_replicas    = 5
+          + min_replicas    = 2
+          + mode            = "ON"
+
+          + cpu_utilization {
+              + predictive_method = "NONE"
+              + target            = 0.8
+            }
+        }
+    }
+
+  # module.compute.google_compute_backend_service.web_backend will be created
+  + resource "google_compute_backend_service" "web_backend" {
+      + connection_draining_timeout_sec = 300
+      + creation_timestamp              = (known after apply)
+      + enable_cdn                      = false
+      + fingerprint                     = (known after apply)
+      + generated_id                    = (known after apply)
+      + health_checks                   = (known after apply)
+      + id                              = (known after apply)
+      + load_balancing_scheme           = "EXTERNAL"
+      + name                            = "dev-web-backend"
+      + port_name                       = "http"
+      + project                         = "ambient-tuner-469208-e2"
+      + protocol                        = "HTTP"
+      + self_link                       = (known after apply)
+      + session_affinity                = (known after apply)
+      + timeout_sec                     = 10
+
+      + backend {
+          + balancing_mode               = "UTILIZATION"
+          + capacity_scaler              = 1
+          + group                        = (known after apply)
+          + max_connections              = (known after apply)
+          + max_connections_per_endpoint = (known after apply)
+          + max_connections_per_instance = (known after apply)
+          + max_rate                     = (known after apply)
+          + max_rate_per_endpoint        = (known after apply)
+          + max_rate_per_instance        = (known after apply)
+          + max_utilization              = (known after apply)
+        }
+    }
+
+  # module.compute.google_compute_global_forwarding_rule.web_forwarding_rule will be created
+  + resource "google_compute_global_forwarding_rule" "web_forwarding_rule" {
+      + base_forwarding_rule  = (known after apply)
+      + effective_labels      = (known after apply)
+      + forwarding_rule_id    = (known after apply)
+      + id                    = (known after apply)
+      + ip_address            = (known after apply)
+      + ip_protocol           = "TCP"
+      + label_fingerprint     = (known after apply)
+      + load_balancing_scheme = "EXTERNAL"
+      + name                  = "dev-web-forwarding-rule"
+      + network               = (known after apply)
+      + network_tier          = (known after apply)
+      + port_range            = "80"
+      + project               = "ambient-tuner-469208-e2"
+      + psc_connection_id     = (known after apply)
+      + psc_connection_status = (known after apply)
+      + self_link             = (known after apply)
+      + subnetwork            = (known after apply)
+      + target                = (known after apply)
+      + terraform_labels      = (known after apply)
+    }
+
+  # module.compute.google_compute_health_check.http_health_check will be created
+  + resource "google_compute_health_check" "http_health_check" {
+      + check_interval_sec  = 5
+      + creation_timestamp  = (known after apply)
+      + healthy_threshold   = 2
+      + id                  = (known after apply)
+      + name                = "dev-http-health-check"
+      + project             = "ambient-tuner-469208-e2"
+      + self_link           = (known after apply)
+      + timeout_sec         = 5
+      + type                = (known after apply)
+      + unhealthy_threshold = 3
+
+      + http_health_check {
+          + port         = 80
+          + proxy_header = "NONE"
+          + request_path = "/"
+        }
+    }
+
+  # module.compute.google_compute_instance_group_manager.web_mig will be created
+  + resource "google_compute_instance_group_manager" "web_mig" {
+      + base_instance_name             = "dev-web"
+      + creation_timestamp             = (known after apply)
+      + fingerprint                    = (known after apply)
+      + id                             = (known after apply)
+      + instance_group                 = (known after apply)
+      + instance_group_manager_id      = (known after apply)
+      + list_managed_instances_results = "PAGELESS"
+      + name                           = "dev-web-mig"
+      + operation                      = (known after apply)
+      + project                        = "ambient-tuner-469208-e2"
+      + self_link                      = (known after apply)
+      + status                         = (known after apply)
+      + target_size                    = 2
+      + target_stopped_size            = (known after apply)
+      + target_suspended_size          = (known after apply)
+      + wait_for_instances             = false
+      + wait_for_instances_status      = "STABLE"
+      + zone                           = "us-central1-a"
+
+      + auto_healing_policies {
+          + health_check      = (known after apply)
+          + initial_delay_sec = 300
+        }
+
+      + version {
+          + instance_template = (known after apply)
+        }
+    }
+
+  # module.compute.google_compute_instance_template.web_template will be created
+  + resource "google_compute_instance_template" "web_template" {
+      + can_ip_forward          = false
+      + creation_timestamp      = (known after apply)
+      + description             = "Instance template for dev web servers"
+      + effective_labels        = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + id                      = (known after apply)
+      + machine_type            = "e2-small"
+      + metadata_fingerprint    = (known after apply)
+      + metadata_startup_script = <<-EOT
+            #!/bin/bash
+            apt-get update
+            apt-get install -y nginx
+            systemctl start nginx
+            # Example: Set a homepage that shows the hostname
+            echo "<html><body><h1>Hello from dev! Host: $(hostname)</h1></body></html>" > /var/www/html/index.html
+        EOT
+      + name                    = (known after apply)
+      + name_prefix             = "dev-web-template-"
+      + numeric_id              = (known after apply)
+      + project                 = "ambient-tuner-469208-e2"
+      + region                  = "us-central1"
+      + self_link               = (known after apply)
+      + self_link_unique        = (known after apply)
+      + tags                    = [
+          + "http-server",
+        ]
+      + tags_fingerprint        = (known after apply)
+      + terraform_labels        = {
+          + "goog-terraform-provisioned" = "true"
+        }
+
+      + disk {
+          + architecture           = (known after apply)
+          + auto_delete            = true
+          + boot                   = true
+          + device_name            = (known after apply)
+          + disk_size_gb           = (known after apply)
+          + disk_type              = (known after apply)
+          + interface              = (known after apply)
+          + mode                   = (known after apply)
+          + provisioned_iops       = (known after apply)
+          + provisioned_throughput = (known after apply)
+          + source_image           = "debian-cloud/debian-11"
+          + type                   = (known after apply)
+        }
+
+      + network_interface {
+          + internal_ipv6_prefix_length = (known after apply)
+          + ipv6_access_type            = (known after apply)
+          + ipv6_address                = (known after apply)
+          + name                        = (known after apply)
+          + network                     = "dev-vpc"
+          + stack_type                  = (known after apply)
+          + subnetwork                  = (known after apply)
+          + subnetwork_project          = (known after apply)
+        }
+
+      + service_account {
+          + email  = "dev-instance-sa@ambient-tuner-469208-e2.iam.gserviceaccount.com"
+          + scopes = [
+              + "https://www.googleapis.com/auth/cloud-platform",
+            ]
+        }
+    }
+
+  # module.compute.google_compute_target_http_proxy.web_http_proxy will be created
+  + resource "google_compute_target_http_proxy" "web_http_proxy" {
+      + creation_timestamp = (known after apply)
+      + fingerprint        = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-web-http-proxy"
+      + project            = "ambient-tuner-469208-e2"
+      + proxy_bind         = (known after apply)
+      + proxy_id           = (known after apply)
+      + self_link          = (known after apply)
+      + url_map            = (known after apply)
+    }
+
+  # module.compute.google_compute_url_map.web_url_map will be created
+  + resource "google_compute_url_map" "web_url_map" {
+      + creation_timestamp = (known after apply)
+      + default_service    = (known after apply)
+      + fingerprint        = (known after apply)
+      + id                 = (known after apply)
+      + map_id             = (known after apply)
+      + name               = "dev-web-url-map"
+      + project            = "ambient-tuner-469208-e2"
+      + self_link          = (known after apply)
+    }
+
+  # module.compute.google_service_account.instance_sa will be created
+  + resource "google_service_account" "instance_sa" {
+      + account_id   = "dev-instance-sa"
+      + disabled     = false
+      + display_name = "Service Account for dev Compute Instances"
+      + email        = "dev-instance-sa@ambient-tuner-469208-e2.iam.gserviceaccount.com"
+      + id           = (known after apply)
+      + member       = "serviceAccount:dev-instance-sa@ambient-tuner-469208-e2.iam.gserviceaccount.com"
+      + name         = (known after apply)
+      + project      = "ambient-tuner-469208-e2"
+      + unique_id    = (known after apply)
+    }
+
+  # module.database.google_compute_global_address.private_ip_address will be created
+  + resource "google_compute_global_address" "private_ip_address" {
+      + address            = (known after apply)
+      + address_type       = "INTERNAL"
+      + creation_timestamp = (known after apply)
+      + effective_labels   = {
+          + "goog-terraform-provisioned" = "true"
+        }
+      + id                 = (known after apply)
+      + label_fingerprint  = (known after apply)
+      + name               = "dev-private-ip-range"
+      + network            = (known after apply)
+      + prefix_length      = 16
+      + project            = "ambient-tuner-469208-e2"
+      + purpose            = "VPC_PEERING"
+      + self_link          = (known after apply)
+      + terraform_labels   = {
+          + "goog-terraform-provisioned" = "true"
+        }
+    }
+
+  # module.database.google_service_networking_connection.private_vpc_connection will be created
+  + resource "google_service_networking_connection" "private_vpc_connection" {
+      + id                      = (known after apply)
+      + network                 = (known after apply)
+      + peering                 = (known after apply)
+      + reserved_peering_ranges = [
+          + "dev-private-ip-range",
+        ]
+      + service                 = "servicenetworking.googleapis.com"
+    }
+
+  # module.database.google_sql_database.webapp will be created
+  + resource "google_sql_database" "webapp" {
+      + charset         = (known after apply)
+      + collation       = (known after apply)
+      + deletion_policy = "DELETE"
+      + id              = (known after apply)
+      + instance        = "dev-mysql-instance"
+      + name            = "webapp_dev"
+      + project         = "ambient-tuner-469208-e2"
+      + self_link       = (known after apply)
+    }
+
+  # module.database.google_sql_database_instance.main will be created
+  + resource "google_sql_database_instance" "main" {
+      + available_maintenance_versions = (known after apply)
+      + connection_name                = (known after apply)
+      + database_version               = "MYSQL_8_0"
+      + deletion_protection            = false
+      + dns_name                       = (known after apply)
+      + dns_names                      = (known after apply)
+      + encryption_key_name            = (known after apply)
+      + first_ip_address               = (known after apply)
+      + id                             = (known after apply)
+      + instance_type                  = (known after apply)
+      + ip_address                     = (known after apply)
+      + maintenance_version            = (known after apply)
+      + master_instance_name           = (known after apply)
+      + name                           = "dev-mysql-instance"
+      + node_count                     = (known after apply)
+      + private_ip_address             = (known after apply)
+      + project                        = "ambient-tuner-469208-e2"
+      + psc_service_attachment_link    = (known after apply)
+      + public_ip_address              = (known after apply)
+      + region                         = "us-central1"
+      + replica_names                  = (known after apply)
+      + self_link                      = (known after apply)
+      + server_ca_cert                 = (sensitive value)
+      + service_account_email_address  = (known after apply)
+
+      + settings {
+          + activation_policy           = "ALWAYS"
+          + availability_type           = "ZONAL"
+          + connector_enforcement       = (known after apply)
+          + disk_autoresize             = true
+          + disk_autoresize_limit       = 0
+          + disk_size                   = (known after apply)
+          + disk_type                   = (known after apply)
+          + edition                     = (known after apply)
+          + effective_availability_type = (known after apply)
+          + pricing_plan                = "PER_USE"
+          + tier                        = "db-f1-micro"
+          + user_labels                 = (known after apply)
+          + version                     = (known after apply)
+
+          + backup_configuration {
+              + enabled                        = true
+              + start_time                     = (known after apply)
+              + transaction_log_retention_days = (known after apply)
+            }
+
+          + ip_configuration {
+              + ipv4_enabled    = false
+              + private_network = (known after apply)
+              + server_ca_mode  = (known after apply)
+              + ssl_mode        = (known after apply)
+            }
+
+          + maintenance_window {
+              + day  = 7
+              + hour = 3
+            }
+        }
+    }
+
+  # module.database.google_sql_user.webapp_user will be created
+  + resource "google_sql_user" "webapp_user" {
+      + host                    = (known after apply)
+      + id                      = (known after apply)
+      + instance                = "dev-mysql-instance"
+      + name                    = "webapp_user"
+      + password                = (sensitive value)
+      + project                 = "ambient-tuner-469208-e2"
+      + sql_server_user_details = (known after apply)
+    }
+
+  # module.networking.google_compute_firewall.allow_internal will be created
+  + resource "google_compute_firewall" "allow_internal" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-allow-internal"
+      + network            = "dev-vpc"
+      + priority           = 1000
+      + project            = "ambient-tuner-469208-e2"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "10.1.0.0/16",
+        ]
+
+      + allow {
+          + ports    = [
+              + "0-65535",
+            ]
+          + protocol = "tcp"
+        }
+      + allow {
+          + ports    = [
+              + "0-65535",
+            ]
+          + protocol = "udp"
+        }
+      + allow {
+          + ports    = []
+          + protocol = "icmp"
+        }
+    }
+
+  # module.networking.google_compute_firewall.allow_lb_health_check will be created
+  + resource "google_compute_firewall" "allow_lb_health_check" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-allow-lb-health-check"
+      + network            = "dev-vpc"
+      + priority           = 1000
+      + project            = "ambient-tuner-469208-e2"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "130.211.0.0/22",
+          + "35.191.0.0/16",
+        ]
+      + target_tags        = [
+          + "http-server",
+        ]
+
+      + allow {
+          + ports    = []
+          + protocol = "tcp"
+        }
+    }
+
+  # module.networking.google_compute_firewall.allow_web will be created
+  + resource "google_compute_firewall" "allow_web" {
+      + creation_timestamp = (known after apply)
+      + destination_ranges = (known after apply)
+      + direction          = (known after apply)
+      + enable_logging     = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-allow-web"
+      + network            = "dev-vpc"
+      + priority           = 1000
+      + project            = "ambient-tuner-469208-e2"
+      + self_link          = (known after apply)
+      + source_ranges      = [
+          + "0.0.0.0/0",
+        ]
+      + target_tags        = [
+          + "http-server",
+        ]
+
+      + allow {
+          + ports    = [
+              + "80",
+              + "443",
+              + "22",
+            ]
+          + protocol = "tcp"
+        }
+    }
+
+  # module.networking.google_compute_network.vpc will be created
+  + resource "google_compute_network" "vpc" {
+      + auto_create_subnetworks                   = false
+      + bgp_always_compare_med                    = (known after apply)
+      + bgp_best_path_selection_mode              = (known after apply)
+      + bgp_inter_region_cost                     = (known after apply)
+      + delete_default_routes_on_create           = false
+      + gateway_ipv4                              = (known after apply)
+      + id                                        = (known after apply)
+      + internal_ipv6_range                       = (known after apply)
+      + mtu                                       = (known after apply)
+      + name                                      = "dev-vpc"
+      + network_firewall_policy_enforcement_order = "AFTER_CLASSIC_FIREWALL"
+      + network_id                                = (known after apply)
+      + numeric_id                                = (known after apply)
+      + project                                   = "ambient-tuner-469208-e2"
+      + routing_mode                              = (known after apply)
+      + self_link                                 = (known after apply)
+    }
+
+  # module.networking.google_compute_router.router will be created
+  + resource "google_compute_router" "router" {
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "dev-router"
+      + network            = (known after apply)
+      + project            = "ambient-tuner-469208-e2"
+      + region             = "us-central1"
+      + self_link          = (known after apply)
+    }
+
+  # module.networking.google_compute_router_nat.nat will be created
+  + resource "google_compute_router_nat" "nat" {
+      + auto_network_tier                   = (known after apply)
+      + drain_nat_ips                       = (known after apply)
+      + enable_dynamic_port_allocation      = (known after apply)
+      + enable_endpoint_independent_mapping = (known after apply)
+      + endpoint_types                      = (known after apply)
+      + icmp_idle_timeout_sec               = 30
+      + id                                  = (known after apply)
+      + min_ports_per_vm                    = (known after apply)
+      + name                                = "dev-nat"
+      + nat_ip_allocate_option              = "AUTO_ONLY"
+      + nat_ips                             = (known after apply)
+      + project                             = "ambient-tuner-469208-e2"
+      + region                              = "us-central1"
+      + router                              = "dev-router"
+      + source_subnetwork_ip_ranges_to_nat  = "LIST_OF_SUBNETWORKS"
+      + tcp_established_idle_timeout_sec    = 1200
+      + tcp_time_wait_timeout_sec           = 120
+      + tcp_transitory_idle_timeout_sec     = 30
+      + type                                = "PUBLIC"
+      + udp_idle_timeout_sec                = 30
+
+      + subnetwork {
+          + name                     = (known after apply)
+          + secondary_ip_range_names = []
+          + source_ip_ranges_to_nat  = [
+              + "ALL_IP_RANGES",
+            ]
+        }
+      + subnetwork {
+          + name                     = (known after apply)
+          + secondary_ip_range_names = []
+          + source_ip_ranges_to_nat  = [
+              + "ALL_IP_RANGES",
+            ]
+        }
+    }
+
+  # module.networking.google_compute_subnetwork.private_subnet[0] will be created
+  + resource "google_compute_subnetwork" "private_subnet" {
+      + creation_timestamp         = (known after apply)
+      + enable_flow_logs           = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.1.10.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + ipv6_gce_endpoint          = (known after apply)
+      + name                       = "dev-private-subnet-0"
+      + network                    = (known after apply)
+      + private_ip_google_access   = true
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "ambient-tuner-469208-e2"
+      + purpose                    = (known after apply)
+      + region                     = "us-central1"
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+      + state                      = (known after apply)
+      + subnetwork_id              = (known after apply)
+    }
+
+  # module.networking.google_compute_subnetwork.private_subnet[1] will be created
+  + resource "google_compute_subnetwork" "private_subnet" {
+      + creation_timestamp         = (known after apply)
+      + enable_flow_logs           = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.1.11.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + ipv6_gce_endpoint          = (known after apply)
+      + name                       = "dev-private-subnet-1"
+      + network                    = (known after apply)
+      + private_ip_google_access   = true
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "ambient-tuner-469208-e2"
+      + purpose                    = (known after apply)
+      + region                     = "us-central1"
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+      + state                      = (known after apply)
+      + subnetwork_id              = (known after apply)
+    }
+
+  # module.networking.google_compute_subnetwork.public_subnet[0] will be created
+  + resource "google_compute_subnetwork" "public_subnet" {
+      + creation_timestamp         = (known after apply)
+      + enable_flow_logs           = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.1.0.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + ipv6_gce_endpoint          = (known after apply)
+      + name                       = "dev-public-subnet-0"
+      + network                    = (known after apply)
+      + private_ip_google_access   = (known after apply)
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "ambient-tuner-469208-e2"
+      + purpose                    = (known after apply)
+      + region                     = "us-central1"
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+      + state                      = (known after apply)
+      + subnetwork_id              = (known after apply)
+    }
+
+  # module.networking.google_compute_subnetwork.public_subnet[1] will be created
+  + resource "google_compute_subnetwork" "public_subnet" {
+      + creation_timestamp         = (known after apply)
+      + enable_flow_logs           = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + internal_ipv6_prefix       = (known after apply)
+      + ip_cidr_range              = "10.1.1.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + ipv6_gce_endpoint          = (known after apply)
+      + name                       = "dev-public-subnet-1"
+      + network                    = (known after apply)
+      + private_ip_google_access   = (known after apply)
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "ambient-tuner-469208-e2"
+      + purpose                    = (known after apply)
+      + region                     = "us-central1"
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+      + state                      = (known after apply)
+      + subnetwork_id              = (known after apply)
+    }
+
+Plan: 24 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + db_connection_name = (known after apply)
+  + db_private_ip      = (sensitive value)
+  + load_balancer_ip   = (known after apply)
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
